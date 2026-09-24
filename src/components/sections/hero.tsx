@@ -22,7 +22,7 @@ export const Hero = async () => {
       <Container className="relative">
         <div className="mx-auto max-w-4xl text-center">
           <Reveal on="load">
-            <Eyebrow>{t("Voice notes for iPhone")}</Eyebrow>
+            <Eyebrow>{t("Voice notes for iPhone and iPad")}</Eyebrow>
           </Reveal>
 
           <h1 className="text-display-xl mt-4 sm:mt-5">
@@ -44,7 +44,7 @@ export const Hero = async () => {
             <div className="mt-7 flex flex-col items-center gap-3 sm:mt-8 sm:gap-3.5">
               <AppStoreButton size="lg" />
               <p className="text-sm text-ink-faint">
-                {t("iPhone · iOS {version} or later", {
+                {t("iPhone and iPad · iOS {version} or later", {
                   version: site.platform.minimumOsVersion,
                 })}
               </p>
@@ -53,7 +53,7 @@ export const Hero = async () => {
         </div>
 
         <div className="mt-8 sm:mt-14">
-          <ScreenshotGroup ids={["recording", "library", "transcript"]} />
+          <ScreenshotGroup ids={["library", "playback", "transcript"]} />
         </div>
       </Container>
     </section>

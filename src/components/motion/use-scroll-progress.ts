@@ -11,8 +11,11 @@ import { useEffect, useRef, type RefObject } from "react";
  * - `hero`: 0 at the very top of the page, 1 once the element's centre reaches
  *   the viewport's centre. For above-the-fold compositions that should start
  *   "closed" and resolve as the reader begins to scroll.
+ * - `view`: 0 as the element's top enters at the bottom of the viewport, 1 as
+ *   its bottom leaves at the top; 0.5 when it is centred. For ordinary
+ *   (unpinned) elements that change as they pass through.
  */
-export type ScrollRange = "pin" | "hero";
+export type ScrollRange = "pin" | "hero" | "view";
 
 interface Options {
   range: ScrollRange;
@@ -35,6 +38,10 @@ const measure = (element: HTMLElement, range: ScrollRange): number => {
   if (range === "pin") {
     const travel = rect.height - viewport;
     return travel > 0 ? clamp01(-rect.top / travel) : 0;
+  }
+
+  if (range === "view") {
+    return clamp01((viewport - rect.top) / (viewport + rect.height));
   }
 
   const centre = rect.top + window.scrollY + rect.height / 2;

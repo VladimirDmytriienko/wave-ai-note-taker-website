@@ -17,7 +17,7 @@ const inter = Inter({
 
 const title = `${site.appName} — voice notes that never leave your iPhone`;
 const description =
-  "Wave is a voice notes app for iPhone. It records, transcribes and searches your notes on your device — no account, nothing uploaded.";
+  "Wave is a voice notes app for iPhone and iPad. It records, transcribes and searches your notes on your device — no account, nothing uploaded.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

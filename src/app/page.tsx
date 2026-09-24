@@ -3,6 +3,7 @@ import { FaqPreview } from "@/components/sections/faq-preview";
 import { FeatureStory } from "@/components/sections/feature-story";
 import { FeatureGrid } from "@/components/sections/feature-grid";
 import { Hero } from "@/components/sections/hero";
+import { IpadShowcase } from "@/components/sections/ipad-showcase";
 import { ScreensCarousel } from "@/components/sections/screens-carousel";
 import { absoluteUrl, site } from "@/config/site";
 
@@ -36,7 +37,7 @@ const HomePage = () => {
       <FeatureGrid />
 
       <FeatureStory />
-
+      <IpadShowcase />
       <ScreensCarousel />
       <FaqPreview />
       <DownloadCta />

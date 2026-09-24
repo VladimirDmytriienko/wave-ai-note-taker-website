@@ -1,11 +1,6 @@
 import Image from "next/image";
 
-import {
-  getScreenshot,
-  SCREENSHOT_HEIGHT,
-  SCREENSHOT_WIDTH,
-  type ScreenshotId,
-} from "@/config/screenshots";
+import { aspectOf, getScreenshot, type ScreenshotId } from "@/config/screenshots";
 import { getTranslations } from "@/i18n";
 import { cn } from "@/lib/cn";
 
@@ -21,7 +16,7 @@ interface ScreenshotScreenProps {
 /**
  * Just the screen content — the image, or its placeholder — filling whatever
  * box it is put in. Use inside a `DeviceFrame` when several screens share one
- * device (e.g. the story section cross-fading between them).
+ * device (e.g. a scene cross-fading between them).
  *
  * Reads `src/config/screenshots.ts`: a registered screenshot renders through
  * `next/image`, a missing one renders a clearly-marked placeholder of the same
@@ -40,8 +35,8 @@ export const ScreenshotScreen = async ({
     <Image
       src={asset.src}
       alt={label}
-      width={SCREENSHOT_WIDTH}
-      height={SCREENSHOT_HEIGHT}
+      width={asset.width}
+      height={asset.height}
       sizes={sizes}
       priority={priority}
       className="h-full w-full object-cover"
@@ -55,18 +50,20 @@ export const ScreenshotScreen = async ({
 };
 
 interface ScreenshotProps extends ScreenshotScreenProps {
-  /** Wrap the screen in a phone bezel. */
+  /** Wrap the screen in its device's bezel. */
   framed?: boolean;
   className?: string;
 }
 
-/** A single application screen, framed in a device by default. */
+/** A single application screen, framed in its device by default. */
 export const Screenshot = ({ framed = true, className, ...screen }: ScreenshotProps) => {
+  const asset = getScreenshot(screen.id);
+
   if (!framed) {
     return (
       <div
         className={cn("@container overflow-hidden rounded-2xl bg-black", className)}
-        style={{ aspectRatio: `${SCREENSHOT_WIDTH} / ${SCREENSHOT_HEIGHT}` }}
+        style={{ aspectRatio: aspectOf(asset) }}
       >
         <ScreenshotScreen {...screen} />
       </div>
@@ -74,7 +71,7 @@ export const Screenshot = ({ framed = true, className, ...screen }: ScreenshotPr
   }
 
   return (
-    <DeviceFrame className={className}>
+    <DeviceFrame device={asset.device} aspect={aspectOf(asset)} className={className}>
       <ScreenshotScreen {...screen} />
     </DeviceFrame>
   );

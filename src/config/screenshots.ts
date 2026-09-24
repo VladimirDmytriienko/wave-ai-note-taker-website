@@ -2,85 +2,119 @@
  * Screenshot registry.
  *
  * The website never invents application UI. Every screen it shows is listed
- * here; while `src` is `null` the presentation components render a clearly
- * marked placeholder of the right shape, so the layout is final before the
- * real captures exist.
+ * here with its real pixel size; a screen whose `src` is `null` renders a
+ * clearly marked placeholder of the right shape instead.
  *
- * To supply a screenshot: drop the PNG into `public/screenshots/` and set
- * `src`. Nothing else needs to change.
- *
- * Capture spec: iPhone 16 Pro (or any 19.5:9 device), portrait, dark mode,
- * status bar included, PNG.
+ * To add or replace a screenshot: drop the file in `public/screenshots/<device>/`
+ * and point `src` at it. Captures are WebP; iPhone portrait at 19.5:9, iPad
+ * landscape at 4:3.
  */
 import type { MessageKey } from "@/i18n";
 
-export type ScreenshotId =
-  | "library"
-  | "recording"
-  | "transcript"
-  | "playback"
-  | "folders"
-  | "settings";
+export type Device = "iphone" | "ipad";
 
 export interface ScreenshotAsset {
-  readonly id: ScreenshotId;
+  readonly device: Device;
   /** Path under `public/`, or `null` until the capture is supplied. */
   readonly src: string | null;
+  /** Intrinsic pixel size — sets the aspect ratio of frame and placeholder. */
+  readonly width: number;
+  readonly height: number;
   /** Alternative text — a message key, so it translates with everything else. */
   readonly alt: MessageKey;
-  /** What exactly to capture. Surfaced in the placeholder during development. */
+  /** What exactly to capture. Shown by the placeholder while `src` is null. */
   readonly capture: string;
 }
 
-/** Native pixel size of an iPhone 16 Pro screenshot — the intrinsic ratio. */
-export const SCREENSHOT_WIDTH = 1206;
-export const SCREENSHOT_HEIGHT = 2622;
-export const SCREENSHOT_ASPECT = `${SCREENSHOT_WIDTH} / ${SCREENSHOT_HEIGHT}`;
+const iphone = { device: "iphone", width: 921, height: 2000 } as const;
+const ipad = { device: "ipad", width: 2000, height: 1500 } as const;
 
 export const screenshots = {
+  // ── iPhone ──────────────────────────────────────────────────────────────
   library: {
-    id: "library",
-    src: null,
+    ...iphone,
+    src: "/screenshots/iphone/library-light.webp",
     alt: "Recordings library",
-    capture: "Recordings list with a few entries, search field and folder tabs",
-  },
-  recording: {
-    id: "recording",
-    src: null,
-    alt: "Recording in progress",
-    capture: "Capture sheet mid-recording: waveform, timer, transport controls",
-  },
-  transcript: {
-    id: "transcript",
-    src: null,
-    alt: "Recording transcript",
-    capture: "Recording detail with a finished transcript, Transcript tab active",
+    capture: "Recordings list with search, folder tabs and the record button",
   },
   playback: {
-    id: "playback",
-    src: null,
+    ...iphone,
+    src: "/screenshots/iphone/playback-dark.webp",
     alt: "Playback controls",
-    capture: "Recording detail mid-playback: scrub bar, timers, speed control",
+    capture: "Recording sheet: waveform, playhead, skip and play controls",
+  },
+  "playback-light": {
+    ...iphone,
+    src: "/screenshots/iphone/playback-light.webp",
+    alt: "Playback controls in the light appearance",
+    capture: "Recording sheet in light mode",
+  },
+  transcript: {
+    ...iphone,
+    src: "/screenshots/iphone/transcript-dark.webp",
+    alt: "Recording transcript",
+    capture: "Transcript of a recording, paragraphs with timestamps",
+  },
+  settings: {
+    ...iphone,
+    src: "/screenshots/iphone/settings-light.webp",
+    alt: "Settings",
+    capture: "Settings with language and theme",
+  },
+  // Still wanted — not used on the site until supplied.
+  recording: {
+    ...iphone,
+    src: null,
+    alt: "Recording in progress",
+    capture: "Capture sheet mid-recording: live waveform, timer, pause/stop",
   },
   folders: {
-    id: "folders",
+    ...iphone,
     src: null,
     alt: "Folders",
     capture: "Folders screen with All Recordings, Favourites and custom folders",
   },
-  settings: {
-    id: "settings",
-    src: null,
-    alt: "Settings",
-    capture: "Settings with the Appearance group (Language and Theme) visible",
+
+  // ── iPad ────────────────────────────────────────────────────────────────
+  "ipad-split": {
+    ...ipad,
+    src: "/screenshots/ipad/split-dark.webp",
+    alt: "Recordings beside a transcript on iPad",
+    capture: "Split view: library list and transcript, dark",
   },
-} as const satisfies Record<ScreenshotId, ScreenshotAsset>;
+  "ipad-split-light": {
+    ...ipad,
+    src: "/screenshots/ipad/split-light.webp",
+    alt: "Recordings beside a transcript on iPad, in the light appearance",
+    capture: "Split view: library list and transcript, light",
+  },
+  "ipad-player": {
+    ...ipad,
+    src: "/screenshots/ipad/player-dark.webp",
+    alt: "Playback on iPad",
+    capture: "Split view: library list and the playback waveform, dark",
+  },
+  "ipad-player-light": {
+    ...ipad,
+    src: "/screenshots/ipad/player-light.webp",
+    alt: "Playback on iPad, in the light appearance",
+    capture: "Split view: library list and the playback waveform, light",
+  },
+  "ipad-transcript": {
+    ...ipad,
+    src: "/screenshots/ipad/transcript-dark.webp",
+    alt: "Full-screen transcript on iPad",
+    capture: "Transcript full screen with the speakers sidebar",
+  },
+} as const satisfies Record<string, ScreenshotAsset>;
 
-export const getScreenshot = (id: ScreenshotId): ScreenshotAsset =>
-  screenshots[id];
+export type ScreenshotId = keyof typeof screenshots;
 
-/** Ids still waiting on a real capture — used by the placeholder tooling. */
+export const getScreenshot = (id: ScreenshotId): ScreenshotAsset => screenshots[id];
+
+/** CSS `aspect-ratio` value for a screenshot. */
+export const aspectOf = (asset: ScreenshotAsset): string => `${asset.width} / ${asset.height}`;
+
+/** Ids still waiting on a real capture. */
 export const missingScreenshots = (): readonly ScreenshotId[] =>
-  (Object.keys(screenshots) as ScreenshotId[]).filter(
-    (id) => screenshots[id].src === null,
-  );
+  (Object.keys(screenshots) as ScreenshotId[]).filter((id) => screenshots[id].src === null);

@@ -1,0 +1,57 @@
+/* iPad: the device settles into place as it arrives, then switches from the
+   dark appearance to the light one while it sits centred in the viewport.
+
+   `--p` comes from <ScrollScene range="view"> (0.5 = centred). Without it —
+   no script, or reduced motion — the iPad simply shows the dark appearance at
+   full size. */
+
+.scene {
+  /* 0 → 1 across a short window just after the device is centred. */
+  --swap: clamp(0, calc((var(--p, 0) - 0.5) * 8), 1);
+}
+
+.device {
+  /* Whole device always fits on screen: 4:3, leaving room for the header and
+     the readout below it. */
+  width: min(100%, 64rem, calc((100svh - 11rem) * 4 / 3));
+  margin-inline: auto;
+}
+
+.scene[data-scene="on"] .device {
+  /* Settles from 88% to full size over the first 40% of its pass. */
+  transform: scale(calc(0.88 + 0.12 * min(1, var(--p, 0) * 2.5)));
+  will-change: transform;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+}
+
+.light {
+  opacity: 0;
+}
+
+.scene[data-scene="on"] .light {
+  opacity: var(--swap);
+}
+
+/* The Dark · Light readout under the device — the active one brightens. */
+.readout {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.readoutDark {
+  opacity: calc(1 - 0.65 * var(--swap));
+}
+
+.readoutLight {
+  opacity: calc(0.35 + 0.65 * var(--swap));
+}

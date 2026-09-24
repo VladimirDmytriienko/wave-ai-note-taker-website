@@ -71,7 +71,7 @@ export const Footer = async () => {
             <Logo className="text-[1.375rem]" />
             <p className="mt-4 max-w-xs text-sm text-ink-faint">
               {t(
-                "Voice notes for iPhone. Recorded, transcribed and kept on your device.",
+                "Voice notes for iPhone and iPad. Recorded, transcribed and kept on your device.",
               )}
             </p>
           </div>
@@ -85,7 +85,7 @@ export const Footer = async () => {
 
         <div className="flex flex-col gap-2 border-t border-hairline py-8 text-sm text-ink-faint sm:flex-row sm:items-center sm:justify-between">
           <p>{t("© {year} Wave", { year })}</p>
-          <p>{t("iPhone · iOS {version} or later", { version: site.platform.minimumOsVersion })}</p>
+          <p>{t("iPhone and iPad · iOS {version} or later", { version: site.platform.minimumOsVersion })}</p>
         </div>
       </Container>
     </footer>

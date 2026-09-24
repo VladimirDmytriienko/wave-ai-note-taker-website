@@ -20,7 +20,7 @@ const ogImage = {
   url: absoluteUrl("/opengraph-image"),
   width: 1200,
   height: 630,
-  alt: `${site.appName} — voice notes for iPhone`,
+  alt: `${site.appName} — voice notes for iPhone and iPad`,
 };
 
 interface CreateMetadataOptions {

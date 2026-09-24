@@ -3,25 +3,24 @@
 Everything below is a deliberate placeholder. Each one is visible in the UI or
 marked in the source, so nothing invented ships by accident.
 
-## 1. Screenshots (blocking — they are the main visual)
+## 1. Screenshots
 
-None exist in the repository, so every screen renders a marked placeholder of
-the correct shape. Capture spec: **iPhone 16 Pro** (or any 19.5:9 device),
-portrait, dark mode, status bar included, PNG.
+- [x] iPhone: library (light), playback (dark + light), transcript (dark),
+      settings (light) — in `public/screenshots/iphone/`.
+- [x] iPad: split view (dark + light), player (dark + light), full-screen
+      transcript (dark) — in `public/screenshots/ipad/`.
 
-| Screen | What to capture | File |
-|---|---|---|
-| `library` | Recordings list with a few entries, search field, folder tabs | `public/screenshots/library.png` |
-| `recording` | Capture sheet mid-recording: waveform, timer, transport | `public/screenshots/recording.png` |
-| `transcript` | Recording detail with a finished transcript, Transcript tab active | `public/screenshots/transcript.png` |
-| `playback` | Recording detail mid-playback: scrub bar, timers, speed control | `public/screenshots/playback.png` |
-| `folders` | Folders screen: All Recordings, Favourites, custom folders | `public/screenshots/folders.png` |
-| `settings` | Settings with the Appearance group (Language, Theme) | `public/screenshots/settings.png` |
+Still wanted — registered in `src/config/screenshots.ts` with `src: null`,
+not used on the page until supplied:
 
-Then set `src` for each entry in `src/config/screenshots.ts`.
+| Screen | What to capture |
+|---|---|
+| `recording` | Capture sheet **mid-recording**: live waveform, timer, pause/stop. Would replace the library shot in the story's "Record" step. |
+| `folders` | Folders screen with All Recordings, Favourites and custom folders. |
 
-Content shown in the captures matters as much as the framing: realistic titles,
-durations and dates read far better than placeholder rows.
+The supplied files are 921×2000 (iPhone) and 2000×1500 (iPad) WebP — enough
+for retina at the sizes used. Original full-resolution PNGs would be a small
+further gain.
 
 ## 2. App Store
 

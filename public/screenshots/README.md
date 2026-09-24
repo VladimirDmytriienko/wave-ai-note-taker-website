@@ -1,13 +1,10 @@
 # Screenshots
 
-Drop application screenshots here, then register them in
-`src/config/screenshots.ts` by setting `src` on the matching entry.
+Application captures used on the site, by device:
 
-- Device: iPhone 16 Pro, or any 19.5:9 device (1206 × 2622 px)
-- Orientation: portrait
-- Appearance: dark mode
-- Status bar: included
-- Format: PNG
+- `iphone/` — portrait, 19.5:9 (currently 921 × 2000 WebP)
+- `ipad/` — landscape, 4:3 (currently 2000 × 1500 WebP)
 
-Unregistered screens render a marked placeholder of the same shape, so the
-layout is finished before the captures are.
+To add or replace one: put the file here and point `src` at it in
+`src/config/screenshots.ts`, with its pixel `width` and `height`. A registered
+entry with `src: null` renders a marked placeholder of the right shape.

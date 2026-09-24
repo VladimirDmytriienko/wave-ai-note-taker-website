@@ -10,10 +10,9 @@ import { getTranslations } from "@/i18n";
 
 const order: readonly ScreenshotId[] = [
   "library",
-  "recording",
-  "transcript",
   "playback",
-  "folders",
+  "transcript",
+  "playback-light",
   "settings",
 ];
 

@@ -7,7 +7,7 @@ import { getTranslations, type MessageKey } from "@/i18n";
 const features: readonly { title: MessageKey; body: MessageKey }[] = [
   {
     title: "On-device transcription",
-    body: "Speech becomes text on your iPhone. Recordings are never sent anywhere.",
+    body: "Speech becomes text on your device. Recordings are never sent anywhere.",
   },
   {
     title: "No account, ever",

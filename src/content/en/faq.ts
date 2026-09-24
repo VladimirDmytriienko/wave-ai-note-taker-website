@@ -25,7 +25,7 @@ export interface FaqEntry {
 export const faq: readonly FaqEntry[] = [
   {
     id: "audio-leaves-device",
-    question: "Does my audio ever leave my iPhone?",
+    question: "Does my audio ever leave my device?",
     answer: [
       "No. Recording and transcription both run on your device, and Wave has no server to send anything to.",
     ],
@@ -56,13 +56,13 @@ export const faq: readonly FaqEntry[] = [
     id: "languages",
     question: "What languages does the app support?",
     answer: [
-      "Wave's interface is available in English and Ukrainian, and follows your iPhone's light or dark appearance.",
+      "Wave's interface is available in English and Ukrainian, and follows your device's light or dark appearance.",
     ],
   },
   {
     id: "requirements",
     question: "Which devices does Wave run on?",
-    answer: ["Wave requires an iPhone running iOS 17 or later."],
+    answer: ["Wave runs on iPhone with iOS 17 or later, and on iPad with iPadOS 17 or later."],
   },
 
   // ── Not published yet ─────────────────────────────────────────────────────

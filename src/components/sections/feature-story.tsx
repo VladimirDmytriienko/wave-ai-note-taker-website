@@ -4,7 +4,7 @@ import { DeviceFrame } from "@/components/product/device-frame";
 import { ScreenshotScreen } from "@/components/product/screenshot";
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/eyebrow";
-import type { ScreenshotId } from "@/config/screenshots";
+import { aspectOf, getScreenshot, type ScreenshotId } from "@/config/screenshots";
 import { getTranslations, type MessageKey } from "@/i18n";
 import { cn } from "@/lib/cn";
 
@@ -19,7 +19,8 @@ interface Step {
 
 const steps: readonly Step[] = [
   {
-    screenshot: "recording",
+    // The library, with the floating record button the copy talks about.
+    screenshot: "library",
     eyebrow: "Record",
     title: "One tap, from anywhere.",
     body: "The record button follows you through the app. Pause, resume and drop a marker while you are still talking.",
@@ -65,7 +66,7 @@ export const FeatureStory = async () => {
         <Container className={styles.grid}>
           <div className={styles.deviceColumn}>
             <div className={styles.device}>
-              <DeviceFrame>
+              <DeviceFrame aspect={aspectOf(getScreenshot(steps[0].screenshot))}>
                 <div className={styles.screenStack}>
                   {steps.map((step, index) => (
                     <div

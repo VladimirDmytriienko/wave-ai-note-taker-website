@@ -23,13 +23,13 @@ export const DownloadCta = async () => {
             {t("Start with your next thought.")}
           </h2>
           <p className="text-lead mx-auto mt-6 max-w-md text-ink-muted">
-            {t("Wave is built for iPhone and runs entirely on your device.")}
+            {t("Wave is built for iPhone and iPad and runs entirely on your device.")}
           </p>
 
           <div className="mt-10 flex flex-col items-center gap-4">
             <AppStoreButton size="lg" />
             <p className="text-sm text-ink-faint">
-              {t("iPhone · iOS {version} or later", {
+              {t("iPhone and iPad · iOS {version} or later", {
                 version: site.platform.minimumOsVersion,
               })}
             </p>

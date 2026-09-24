@@ -5,7 +5,7 @@ import { ImageResponse } from "next/og";
 
 import { site } from "@/config/site";
 
-export const alt = `${site.appName} — voice notes for iPhone`;
+export const alt = `${site.appName} — voice notes for iPhone and iPad`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -53,7 +53,7 @@ const OpengraphImage = async () => {
         </div>
 
         <div style={{ display: "flex", fontSize: 26, color: "rgba(234,236,242,0.55)" }}>
-          On-device transcription · iPhone · iOS {site.platform.minimumOsVersion} or later
+          On-device transcription · iPhone and iPad · iOS {site.platform.minimumOsVersion} or later
         </div>
       </div>
     ),
