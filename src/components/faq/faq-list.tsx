@@ -16,7 +16,7 @@ interface FaqListProps {
 export const FaqList = ({ entries, className }: FaqListProps) => (
   <ul className={cn("divide-y divide-hairline border-y border-hairline", className)}>
     {entries.map((entry) => (
-      <li key={entry.id} id={entry.id} className="scroll-mt-28">
+      <li key={entry.id} id={entry.id}>
         <details className="group">
           <summary
             className={cn(

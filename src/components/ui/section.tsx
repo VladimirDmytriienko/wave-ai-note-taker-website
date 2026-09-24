@@ -34,8 +34,15 @@ export const Section = ({
 }: SectionProps) => (
   <section
     id={id}
-    // `scroll-mt` keeps anchored headings clear of the sticky header.
-    className={cn("relative scroll-mt-24", spacing[space], className)}
+    // `overflow-x-clip` contains the decorative glows, which are deliberately
+    // wider than their column — without it they widen the document itself and
+    // a phone gets a horizontal scrollbar. `clip` rather than `hidden`: it
+    // does not create a scroll container, so nothing inside changes behaviour.
+    className={cn(
+      "relative overflow-x-clip",
+      spacing[space],
+      className,
+    )}
     {...aria}
   >
     {divider ? (

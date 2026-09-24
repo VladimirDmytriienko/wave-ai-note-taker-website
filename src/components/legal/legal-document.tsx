@@ -47,7 +47,7 @@ export const LegalDocumentView = async ({ document }: LegalDocumentProps) => {
 
       <div className="mt-16 space-y-12">
         {document.sections.map((section) => (
-          <section key={section.id} id={section.id} className="scroll-mt-28">
+          <section key={section.id} id={section.id}>
             <h2 className="text-xl font-semibold tracking-[-0.02em]">
               {section.heading}
             </h2>

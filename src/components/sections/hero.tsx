@@ -10,7 +10,7 @@ export const Hero = async () => {
   const t = await getTranslations();
 
   return (
-    <section className="relative overflow-hidden pt-20 pb-16 sm:pt-28 sm:pb-24">
+    <section className="relative overflow-hidden pt-8 pb-14 sm:pt-16 sm:pb-20">
       {/* Ambient light from above — sets the stage without competing with the
           product visual below it. */}
       <div
@@ -19,19 +19,19 @@ export const Hero = async () => {
       />
 
       <Container className="relative">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-4xl text-center">
           <Reveal>
             <Eyebrow>{t("Voice notes for iPhone")}</Eyebrow>
           </Reveal>
 
           <Reveal delay={80}>
-            <h1 className="text-display-xl mt-6">
+            <h1 className="text-display-xl mt-4 sm:mt-5">
               {t("Voice notes that never leave your iPhone.")}
             </h1>
           </Reveal>
 
           <Reveal delay={160}>
-            <p className="text-lead mx-auto mt-7 max-w-xl text-ink-muted">
+            <p className="text-lead mx-auto mt-4 max-w-xl text-ink-muted sm:mt-5">
               {t(
                 "Wave records, transcribes and searches your notes on your device. No account, nothing uploaded.",
               )}
@@ -39,7 +39,7 @@ export const Hero = async () => {
           </Reveal>
 
           <Reveal delay={240}>
-            <div className="mt-10 flex flex-col items-center gap-4">
+            <div className="mt-7 flex flex-col items-center gap-3 sm:mt-8 sm:gap-3.5">
               <AppStoreButton size="lg" />
               <p className="text-sm text-ink-faint">
                 {t("iPhone · iOS {version} or later", {
@@ -50,7 +50,7 @@ export const Hero = async () => {
           </Reveal>
         </div>
 
-        <div className="mt-20 sm:mt-24">
+        <div className="mt-8 sm:mt-14">
           <ScreenshotGroup ids={["recording", "library", "transcript"]} />
         </div>
       </Container>
