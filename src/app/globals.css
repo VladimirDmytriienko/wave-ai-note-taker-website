@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Design tokens — the single source of colour, type and motion for the site.
+   Values echo the iOS app's own token set (near-black canvas, iOS system blue
+   accent, Apple-ish tracking) so the website and the product read as one thing.
+   ─────────────────────────────────────────────────────────────────────────── */
+@theme {
+  /* Surfaces */
+  --color-canvas: #060608;
+  --color-surface: #0c0d11;
+  --color-raised: #131519;
+  --color-hairline: rgba(255, 255, 255, 0.08);
+  --color-hairline-strong: rgba(255, 255, 255, 0.16);
+
+  /* Text */
+  --color-ink: #f6f7f9;
+  --color-ink-muted: rgba(234, 236, 242, 0.62);
+  --color-ink-faint: rgba(234, 236, 242, 0.38);
+  --color-ink-inverse: #08090b;
+
+  /* Accent — iOS system blue, dark variant */
+  --color-accent: #3d9bff;
+  --color-accent-strong: #0a84ff;
+  --color-accent-soft: rgba(61, 155, 255, 0.14);
+
+  /* Type */
+  --font-sans:
+    var(--font-inter), ui-sans-serif, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", system-ui, sans-serif;
+
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.16em;
+  --text-eyebrow--font-weight: 500;
+
+  --text-display-xl: clamp(2.75rem, 8.2vw, 6rem);
+  --text-display-xl--line-height: 0.96;
+  --text-display-xl--letter-spacing: -0.04em;
+  --text-display-xl--font-weight: 600;
+
+  --text-display: clamp(2.25rem, 5.4vw, 4rem);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.035em;
+  --text-display--font-weight: 600;
+
+  --text-title: clamp(1.625rem, 3vw, 2.25rem);
+  --text-title--line-height: 1.1;
+  --text-title--letter-spacing: -0.025em;
+  --text-title--font-weight: 600;
+
+  --text-lead: clamp(1.0625rem, 1.35vw, 1.3125rem);
+  --text-lead--line-height: 1.5;
+  --text-lead--letter-spacing: -0.012em;
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-reveal: 900ms;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    /* Sticky header height + breathing room for in-page anchors. */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-synthesis-weight: none;
+  }
+
+  ::selection {
+    background-color: rgba(61, 155, 255, 0.28);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* The heading hierarchy carries the layout; never let a long word break it. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  /* Scroll reveal ------------------------------------------------------------
+     `<Reveal>` sets data-reveal and flips data-visible via IntersectionObserver.
+     Everything visual lives here so the client component stays ~30 lines, and
+     so the reduced-motion opt-out is a single CSS rule rather than JS state. */
+  [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-shift, 1.5rem), 0);
+    transition:
+      opacity var(--duration-reveal) var(--ease-out-soft),
+      transform var(--duration-reveal) var(--ease-out-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  [data-reveal][data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hairline rules that fade at both ends — used between sections. */
+  .rule-fade {
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-hairline-strong) 18%,
+      var(--color-hairline-strong) 82%,
+      transparent
+    );
+  }
+
+  /* Horizontal scroller without a visible scrollbar (carousel track). */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  /* Soft ambient light behind the product visuals. Pure CSS: no image weight,
+     and it scales with the viewport instead of pixelating. */
+  .glow-accent {
+    background: radial-gradient(
+      55% 45% at 50% 42%,
+      rgba(61, 155, 255, 0.22) 0%,
+      rgba(61, 155, 255, 0.07) 45%,
+      transparent 72%
+    );
+  }
+
+  /* Edge fade for horizontal scrollers — the slides leaving the viewport
+     dissolve instead of being cut off by the window edge. */
+  .mask-fade-x {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 9%,
+      black 91%,
+      transparent 100%
+    );
+  }
+}
+
+/* Accessibility: honour the OS setting. Reveals resolve to their end state,
+   smooth scrolling and every decorative transition are switched off. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Disclosure animation for the FAQ. Native <details> keeps the component free
+   of client JavaScript; the open state only needs a one-shot entry animation. */
+@keyframes disclosure-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -0.35rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer components {
+  details[open] > .disclosure-panel {
+    animation: disclosure-in 320ms var(--ease-out-soft) both;
+  }
+}
