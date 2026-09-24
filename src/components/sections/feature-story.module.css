@@ -41,10 +41,11 @@
   display: none;
 }
 
-@media (min-width: 1024px) {
+/* Phone left, story right from tablet width up; stacked only on phones. */
+@media (min-width: 768px) {
   .grid {
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    gap: 3rem;
   }
 
   .deviceColumn {
@@ -149,13 +150,14 @@
   margin-top: 1.5rem;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .scene[data-scene="on"] .grid {
-    gap: 5rem;
+    gap: 3rem;
   }
 
   .scene[data-scene="on"] .device {
-    width: min(21rem, 34svh);
+    /* Fits the column, the stage height, and never grows past a real phone. */
+    width: min(100%, 21rem, 34svh);
   }
 
   .scene[data-scene="on"] .deviceColumn {
@@ -168,5 +170,12 @@
 
   .scene[data-scene="on"] .meter {
     margin-top: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid,
+  .scene[data-scene="on"] .grid {
+    gap: 5rem;
   }
 }
