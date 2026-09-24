@@ -30,7 +30,8 @@ export const ScreenshotGroup = ({ ids, className }: ScreenshotGroupProps) => {
 
       <div className="relative flex items-center justify-center">
         <Reveal
-          delay={120}
+          on="load"
+          delay={320}
           shift={1}
           className="relative z-10 w-[30%] -translate-x-[5%] rotate-[-7deg] sm:w-[28%] sm:-translate-x-[12%]"
         >
@@ -41,12 +42,13 @@ export const ScreenshotGroup = ({ ids, className }: ScreenshotGroupProps) => {
           />
         </Reveal>
 
-        <Reveal delay={0} shift={1.75} className="relative z-20 w-[40%] sm:w-[38%]">
+        <Reveal on="load" delay={260} shift={1.75} className="relative z-20 w-[40%] sm:w-[38%]">
           <Screenshot id={centre} priority sizes="(min-width: 640px) 24rem, 45vw" />
         </Reveal>
 
         <Reveal
-          delay={220}
+          on="load"
+          delay={380}
           shift={1}
           className="relative z-10 w-[30%] translate-x-[5%] rotate-[7deg] sm:w-[28%] sm:translate-x-[12%]"
         >

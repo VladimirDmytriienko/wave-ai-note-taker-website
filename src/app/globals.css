@@ -108,23 +108,29 @@
 }
 
 @layer components {
-  /* Scroll reveal ------------------------------------------------------------
-     `<Reveal>` sets data-reveal and flips data-visible via IntersectionObserver.
-     Everything visual lives here so the client component stays ~30 lines, and
-     so the reduced-motion opt-out is a single CSS rule rather than JS state. */
-  [data-reveal] {
+  /* Reveal ---------------------------------------------------------------
+     See `<Reveal>`. Server-rendered content is always visible; these rules
+     only ever ADD motion on top of it.
+
+     load   — CSS animation straight from the HTML, no JavaScript involved.
+     scroll — hidden only once the client has marked it `data-state=hidden`
+              (i.e. scripts are running and it is off screen), then shown. */
+  [data-reveal="load"] {
+    animation: reveal-rise var(--duration-reveal) var(--ease-out-soft)
+      var(--reveal-delay, 0ms) both;
+  }
+
+  [data-reveal="scroll"][data-state="hidden"] {
     opacity: 0;
     transform: translate3d(0, var(--reveal-shift, 1.5rem), 0);
+  }
+
+  /* Transition only on the way in — hiding an off-screen element is instant. */
+  [data-reveal="scroll"][data-state="shown"] {
     transition:
       opacity var(--duration-reveal) var(--ease-out-soft),
       transform var(--duration-reveal) var(--ease-out-soft);
     transition-delay: var(--reveal-delay, 0ms);
-    will-change: opacity, transform;
-  }
-
-  [data-reveal][data-visible="true"] {
-    opacity: 1;
-    transform: none;
   }
 
   /* Hairline rules that fade at both ends — used between sections. */
@@ -182,9 +188,10 @@
   }
 
   [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
   }
 
   *,
@@ -194,6 +201,17 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-shift, 1.5rem), 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 

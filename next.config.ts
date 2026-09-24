@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
   },
   // Surfaces accidental cross-origin or legacy patterns during development.
   reactStrictMode: true,
+  // Next.js blocks its dev-only resources (scripts, hot reload) for any host
+  // other than localhost. Without this, opening the dev server by LAN address
+  // — e.g. from a phone — serves HTML that never hydrates. Private-network
+  // ranges and Bonjour `.local` names only; has no effect in production.
+  allowedDevOrigins: ["192.168.*.*", "10.*.*.*", "*.local"],
   turbopack: { root: projectRoot },
 };
 

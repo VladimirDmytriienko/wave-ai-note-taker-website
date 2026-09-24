@@ -52,12 +52,6 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang={localeTags[defaultLocale]} className={inter.variable}>
       <body className="min-h-dvh antialiased">
-        {/* Scroll reveals start hidden. Without scripting nothing would flip
-            them back, so make them visible up front in that case. */}
-        <noscript>
-          <style>{`[data-reveal]{opacity:1 !important;transform:none !important}`}</style>
-        </noscript>
-
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-ink-inverse"

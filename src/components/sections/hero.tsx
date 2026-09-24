@@ -20,17 +20,17 @@ export const Hero = async () => {
 
       <Container className="relative">
         <div className="mx-auto max-w-4xl text-center">
-          <Reveal>
+          <Reveal on="load">
             <Eyebrow>{t("Voice notes for iPhone")}</Eyebrow>
           </Reveal>
 
-          <Reveal delay={80}>
+          <Reveal on="load" delay={80}>
             <h1 className="text-display-xl mt-4 sm:mt-5">
               {t("Voice notes that never leave your iPhone.")}
             </h1>
           </Reveal>
 
-          <Reveal delay={160}>
+          <Reveal on="load" delay={160}>
             <p className="text-lead mx-auto mt-4 max-w-xl text-ink-muted sm:mt-5">
               {t(
                 "Wave records, transcribes and searches your notes on your device. No account, nothing uploaded.",
@@ -38,7 +38,7 @@ export const Hero = async () => {
             </p>
           </Reveal>
 
-          <Reveal delay={240}>
+          <Reveal on="load" delay={240}>
             <div className="mt-7 flex flex-col items-center gap-3 sm:mt-8 sm:gap-3.5">
               <AppStoreButton size="lg" />
               <p className="text-sm text-ink-faint">
