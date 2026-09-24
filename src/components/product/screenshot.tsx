@@ -12,36 +12,31 @@ import { cn } from "@/lib/cn";
 import { DeviceFrame } from "./device-frame";
 import { ScreenshotPlaceholder } from "./screenshot-placeholder";
 
-interface ScreenshotProps {
+interface ScreenshotScreenProps {
   id: ScreenshotId;
-  /** Wrap the screen in a phone bezel. */
-  framed?: boolean;
-  /** Eager-load the screenshot — use for the hero only. */
   priority?: boolean;
-  /** Responsive sizes hint for `next/image`. */
   sizes?: string;
-  className?: string;
 }
 
 /**
- * A single application screen.
+ * Just the screen content — the image, or its placeholder — filling whatever
+ * box it is put in. Use inside a `DeviceFrame` when several screens share one
+ * device (e.g. the story section cross-fading between them).
  *
  * Reads `src/config/screenshots.ts`: a registered screenshot renders through
  * `next/image`, a missing one renders a clearly-marked placeholder of the same
  * shape. Call sites do not branch on availability.
  */
-export const Screenshot = async ({
+export const ScreenshotScreen = async ({
   id,
-  framed = true,
   priority = false,
   sizes = "(min-width: 1024px) 24rem, 60vw",
-  className,
-}: ScreenshotProps) => {
+}: ScreenshotScreenProps) => {
   const asset = getScreenshot(id);
   const t = await getTranslations();
   const label = t(asset.alt);
 
-  const screen = asset.src ? (
+  return asset.src ? (
     <Image
       src={asset.src}
       alt={label}
@@ -57,17 +52,30 @@ export const Screenshot = async ({
       capture={asset.capture}
     />
   );
+};
 
+interface ScreenshotProps extends ScreenshotScreenProps {
+  /** Wrap the screen in a phone bezel. */
+  framed?: boolean;
+  className?: string;
+}
+
+/** A single application screen, framed in a device by default. */
+export const Screenshot = ({ framed = true, className, ...screen }: ScreenshotProps) => {
   if (!framed) {
     return (
       <div
         className={cn("@container overflow-hidden rounded-2xl bg-black", className)}
         style={{ aspectRatio: `${SCREENSHOT_WIDTH} / ${SCREENSHOT_HEIGHT}` }}
       >
-        {screen}
+        <ScreenshotScreen {...screen} />
       </div>
     );
   }
 
-  return <DeviceFrame className={className}>{screen}</DeviceFrame>;
+  return (
+    <DeviceFrame className={className}>
+      <ScreenshotScreen {...screen} />
+    </DeviceFrame>
+  );
 };

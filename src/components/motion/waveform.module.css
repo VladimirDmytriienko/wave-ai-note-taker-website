@@ -1,0 +1,50 @@
+.wave {
+  display: flex;
+  align-items: center;
+  gap: var(--wave-gap, 3px);
+  height: 100%;
+  width: 100%;
+}
+
+.bar {
+  flex: 1 1 0;
+  min-width: 2px;
+  height: calc(var(--h) * 100%);
+  border-radius: 999px;
+  background: var(--wave-rest, rgba(255, 255, 255, 0.14));
+  transform-origin: 50% 50%;
+}
+
+/* live — idles like a signal being recorded. Transform-only, so it runs on
+   the compositor; staggered negative delays desynchronise the bars without
+   a script. The global reduced-motion rule freezes it. */
+.live .bar {
+  background: var(--wave-live, var(--color-accent));
+  animation: pulse 1.8s var(--ease-standard) infinite alternate;
+  animation-delay: calc(var(--i) * -113ms);
+}
+
+@keyframes pulse {
+  from {
+    transform: scaleY(0.28);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* progress — the scroll is the playhead. Each bar lights up as the nearest
+   scene's progress (`--p`, 0 → 1) passes it. */
+.progress .bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.progress .bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--color-accent);
+  opacity: clamp(0, calc((var(--p, 0) * var(--n) - var(--i)) * 1.5), 1);
+}

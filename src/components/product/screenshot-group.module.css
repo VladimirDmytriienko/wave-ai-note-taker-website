@@ -1,0 +1,107 @@
+/* Hero composition: one phone that opens into three as the reader scrolls.
+
+   `--p` (0 → 1) is written by <ScrollScene range="hero">. Without it — no
+   script yet, or none at all — the stack stays closed: a single phone, which
+   is a complete composition on its own. With reduced motion it is shown open,
+   and never moves. */
+
+.row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slotSide {
+  position: relative;
+  z-index: 10;
+  width: 30%;
+}
+
+.slotCentre {
+  position: relative;
+  z-index: 20;
+  width: 40%;
+}
+
+.phone {
+  /* Where the flanking phones end up, as a share of their own width. */
+  --open-x: 5%;
+  /* Tucked behind the centre phone, with a sliver showing for depth. */
+  --closed-x: 104%;
+  --tilt: 7deg;
+  transform-origin: 50% 65%;
+  will-change: transform;
+  /* So the dimming wash can match the bezel radius in container units. */
+  container-type: inline-size;
+}
+
+.left {
+  transform: translateX(
+      calc(var(--closed-x) - (var(--closed-x) + var(--open-x)) * var(--p, 0))
+    )
+    rotate(calc(var(--tilt) * -1 * var(--p, 0)))
+    scale(calc(0.86 + 0.14 * var(--p, 0)));
+}
+
+.right {
+  transform: translateX(
+      calc(var(--closed-x) * -1 + (var(--closed-x) + var(--open-x)) * var(--p, 0))
+    )
+    rotate(calc(var(--tilt) * var(--p, 0)))
+    scale(calc(0.86 + 0.14 * var(--p, 0)));
+}
+
+.centre {
+  transform: scale(calc(0.95 + 0.05 * var(--p, 0)));
+}
+
+/* The flanks recede: a dimming wash rather than blur — crisp and free. */
+.dim {
+  position: absolute;
+  inset: 0;
+  border-radius: 13.5cqw;
+  background: var(--color-canvas);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* The live waveform runs behind the phones; they cover more of it as they
+   open, so the signal seems to pass through the device. */
+.wave {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(100vw, 72rem);
+  height: 22%;
+  transform: translate(-50%, -50%);
+  opacity: calc(0.32 + 0.18 * var(--p, 0));
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 22%,
+    black 78%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .slotSide {
+    width: 28%;
+  }
+
+  .slotCentre {
+    width: 38%;
+  }
+
+  .phone {
+    --open-x: 12%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene {
+    --p: 1;
+  }
+}

@@ -1,9 +1,9 @@
 import { DownloadCta } from "@/components/sections/download-cta";
 import { FaqPreview } from "@/components/sections/faq-preview";
+import { FeatureStory } from "@/components/sections/feature-story";
 import { FeatureGrid } from "@/components/sections/feature-grid";
 import { Hero } from "@/components/sections/hero";
 import { ScreensCarousel } from "@/components/sections/screens-carousel";
-import { Showcase } from "@/components/sections/showcase";
 import { absoluteUrl, site } from "@/config/site";
 
 /**
@@ -35,21 +35,7 @@ const HomePage = () => {
       <Hero />
       <FeatureGrid />
 
-      <Showcase
-        screenshot="recording"
-        eyebrow="Record"
-        title="One tap, from anywhere."
-        body="The record button follows you through the app. Pause, resume and drop a marker while you are still talking."
-        divider
-      />
-
-      <Showcase
-        screenshot="transcript"
-        eyebrow="Transcript"
-        title="Read it back, line by line."
-        body="Transcribe a recording on your device, then tap any line to jump to that moment — or edit it in place."
-        side="end"
-      />
+      <FeatureStory />
 
       <ScreensCarousel />
       <FaqPreview />

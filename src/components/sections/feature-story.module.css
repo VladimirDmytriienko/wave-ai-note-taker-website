@@ -1,0 +1,172 @@
+/* Story: one pinned phone, a description that changes beside it.
+
+   Two layouts from one DOM:
+   - default (no script): an ordinary section — the phone sticks beside the
+     steps with plain CSS `position: sticky`, every step is visible, and the
+     phone shows the first screen.
+   - [data-scene="on"] (set by <ScrollScene>): the stage pins for the whole
+     section, and scrolling moves through the steps in place. Each step's
+     screen cross-fades inside the one device; its text swaps beside it. */
+
+.scene {
+  --steps: 3;
+  position: relative;
+}
+
+.stage {
+  padding-block: 6rem;
+}
+
+.grid {
+  display: grid;
+  gap: 3rem;
+  align-items: start;
+}
+
+.device {
+  width: min(17rem, 68vw);
+  margin-inline: auto;
+}
+
+.screen:not(:first-child) {
+  display: none;
+}
+
+.steps {
+  display: grid;
+  gap: 4.5rem;
+}
+
+.meter {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+
+  .deviceColumn {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .device {
+    width: min(20rem, 100%);
+  }
+
+  .steps {
+    gap: 40vh;
+    padding-block: 10vh 20vh;
+  }
+}
+
+/* ── Scroll-driven ─────────────────────────────────────────────────────── */
+
+.scene[data-scene="on"] {
+  /* One viewport to pin, plus ~70% of a viewport of scroll per step. */
+  height: calc(100svh + var(--steps) * 70svh);
+}
+
+.scene[data-scene="on"] .stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  /* Clear the sticky header. */
+  padding-block: 4.5rem 1.5rem;
+}
+
+.scene[data-scene="on"] .grid {
+  width: 100%;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.scene[data-scene="on"] .device {
+  /* Sized from the viewport HEIGHT, so the phone always fits the stage. */
+  width: min(62vw, 22svh);
+}
+
+.scene[data-scene="on"] .screenStack {
+  position: absolute;
+  inset: 0;
+}
+
+.scene[data-scene="on"] .screen {
+  display: block;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.03);
+  transition:
+    opacity 600ms var(--ease-standard),
+    transform 900ms var(--ease-out-soft);
+}
+
+.scene[data-scene="on"] .screen[data-active="current"] {
+  opacity: 1;
+  transform: none;
+}
+
+.scene[data-scene="on"] .steps {
+  position: relative;
+  display: block;
+  min-height: 11.5rem;
+  padding: 0;
+}
+
+.scene[data-scene="on"] .step {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transform: translate3d(0, 1.75rem, 0);
+  transition:
+    opacity 500ms var(--ease-standard),
+    transform 800ms var(--ease-out-soft);
+  pointer-events: none;
+}
+
+.scene[data-scene="on"] .step[data-active="before"] {
+  transform: translate3d(0, -1.75rem, 0);
+}
+
+.scene[data-scene="on"] .step[data-active="current"] {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.scene[data-scene="on"] .meter {
+  display: block;
+  height: 1.75rem;
+  width: min(100%, 18rem);
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .scene[data-scene="on"] .grid {
+    gap: 5rem;
+  }
+
+  .scene[data-scene="on"] .device {
+    width: min(21rem, 34svh);
+  }
+
+  .scene[data-scene="on"] .deviceColumn {
+    position: static;
+  }
+
+  .scene[data-scene="on"] .steps {
+    min-height: 16rem;
+  }
+
+  .scene[data-scene="on"] .meter {
+    margin-top: 2.5rem;
+  }
+}

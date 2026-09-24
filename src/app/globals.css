@@ -232,6 +232,32 @@
   }
 }
 
+/* Headline words rise from behind a mask (see <SplitWords>). The padding
+   gives descenders room inside the clip; the negative margin gives it back. */
+@keyframes word-rise {
+  from {
+    transform: translate3d(0, 108%, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@layer components {
+  .split-word {
+    display: inline-block;
+    overflow: clip;
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+    vertical-align: top;
+  }
+
+  .split-word-inner {
+    display: inline-block;
+    animation: word-rise 1000ms var(--ease-out-soft) var(--word-delay, 0ms) both;
+  }
+}
+
 /* Disclosure animation for the FAQ. Native <details> keeps the component free
    of client JavaScript; the open state only needs a one-shot entry animation. */
 @keyframes disclosure-in {

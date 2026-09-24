@@ -1,0 +1,51 @@
+/* Screens gallery.
+
+   Default: a native scroll-snap carousel (swipe, trackpad, keyboard, buttons).
+   [data-scene="on"]: the section pins and vertical scrolling slides the row
+   of screens sideways, 1:1 — the page scroll *is* the carousel. `--distance`
+   (px) is the row's overflow, measured by the component; `--p` comes from
+   the scroll scene. Reduced motion keeps the native carousel. */
+
+.window {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 9%,
+    black 91%,
+    transparent 100%
+  );
+}
+
+.scene[data-scene="on"] {
+  /* Slide width when pinned — sized to the stage height so the frame fits. */
+  --slide-w: min(18rem, 22svh);
+  height: calc(100svh + var(--distance, 0px));
+}
+
+.scene[data-scene="on"] .stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 4.5rem 1.5rem;
+}
+
+.scene[data-scene="on"] .window {
+  overflow: hidden;
+}
+
+.scene[data-scene="on"] .track {
+  overflow: visible;
+  /* First and last slides sit dead centre at either end of the travel. */
+  padding-inline: calc(50% - var(--slide-w) / 2);
+  scroll-snap-type: none;
+  transform: translate3d(calc(var(--p, 0) * var(--distance, 0px) * -1), 0, 0);
+  will-change: transform;
+}
+
+/* The phones size to the stage height so the pinned frame always fits. */
+.scene[data-scene="on"] .slide {
+  width: var(--slide-w);
+}

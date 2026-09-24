@@ -25,11 +25,19 @@ tags, the sitemap and robots.txt are derived from it. See `.env.example`.
 Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · React Server
 Components by default.
 
-There is no animation library. Motion is CSS (`globals.css`), driven by two
-small client components: `Reveal` flips one data attribute when an element
-enters the viewport, and `ScreenshotCarousel` moves a native scroll-snap
-track. Everything else on the site is a Server Component, so the JavaScript
-that ships is only what the carousel and the reveals need.
+There is no animation library. Motion is CSS reading one custom property:
+
+- `components/motion/use-scroll-progress.ts` writes scroll progress (0 → 1)
+  to `--p` on a scene element, once per frame, only while it is near the
+  viewport. It never re-renders React.
+- `ScrollScene` wraps that for Server Components: the hero phones opening,
+  the pinned story (phone stays, description changes), and the screens row
+  sliding sideways are all plain CSS in `*.module.css` files driven by `--p`.
+- `Reveal` and `SplitWords` handle entrances; `Waveform` is the brand motif.
+
+Every scene is progressive enhancement: the server-rendered layout is complete
+without JavaScript, and `prefers-reduced-motion` either freezes a scene in its
+final state or keeps the static layout.
 
 ## Layout
 
@@ -40,9 +48,10 @@ src/
     opengraph-image.tsx  sitemap.ts  robots.ts  icon.png  apple-icon.png
   components/
     layout/            header, footer
-    sections/          landing-page sections (hero, features, showcase, …)
+    sections/          landing-page sections (hero, features, story, …)
     product/           app presentation: device frame, screenshots, carousel
     faq/  legal/       content renderers
+    motion/            scroll engine, ScrollScene, Waveform, SplitWords
     ui/                generic primitives (container, section, button, reveal)
   config/              site.ts (product data), screenshots.ts, navigation.ts
   content/<locale>/    FAQ + legal copy as editable data
