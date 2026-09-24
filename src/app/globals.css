@@ -2,8 +2,9 @@
 
 /* ───────────────────────────────────────────────────────────────────────────
    Design tokens — the single source of colour, type and motion for the site.
-   Values echo the iOS app's own token set (near-black canvas, iOS system blue
-   accent, Apple-ish tracking) so the website and the product read as one thing.
+   Values echo the product: near-black canvas like the app's OLED theme, and
+   the red of the Wave logo as the one accent, so the site and the app icon
+   read as one thing.
    ─────────────────────────────────────────────────────────────────────────── */
 @theme {
   /* Surfaces */
@@ -19,10 +20,9 @@
   --color-ink-faint: rgba(234, 236, 242, 0.38);
   --color-ink-inverse: #08090b;
 
-  /* Accent — iOS system blue, dark variant */
-  --color-accent: #3d9bff;
-  --color-accent-strong: #0a84ff;
-  --color-accent-soft: rgba(61, 155, 255, 0.14);
+  /* Accent — the red of the Wave logo (scripts/generate-splash-logo.swift in
+     the iOS project: rgb 255 23 52). Used sparingly: focus, selection, light. */
+  --color-accent: #ff1734;
 
   /* Type */
   --font-sans:
@@ -85,7 +85,7 @@
   }
 
   ::selection {
-    background-color: rgba(61, 155, 255, 0.28);
+    background-color: rgba(255, 23, 52, 0.32);
     color: var(--color-ink);
   }
 
@@ -161,8 +161,25 @@
   .glow-accent {
     background: radial-gradient(
       55% 45% at 50% 42%,
-      rgba(61, 155, 255, 0.22) 0%,
-      rgba(61, 155, 255, 0.07) 45%,
+      rgba(255, 23, 52, 0.16) 0%,
+      rgba(255, 23, 52, 0.05) 45%,
+      transparent 72%
+    );
+  }
+
+  /* Light falling from above the hero, and rising behind the closing CTA. */
+  .glow-top {
+    background: radial-gradient(
+      60% 50% at 50% -10%,
+      rgba(255, 23, 52, 0.13),
+      transparent 70%
+    );
+  }
+
+  .glow-bottom {
+    background: radial-gradient(
+      50% 60% at 50% 100%,
+      rgba(255, 23, 52, 0.11),
       transparent 72%
     );
   }

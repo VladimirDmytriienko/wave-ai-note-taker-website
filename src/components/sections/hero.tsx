@@ -15,7 +15,7 @@ export const Hero = async () => {
           product visual below it. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-[42rem] bg-[radial-gradient(60%_50%_at_50%_-10%,rgba(61,155,255,0.16),transparent_70%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[42rem] glow-top"
       />
 
       <Container className="relative">

@@ -68,7 +68,7 @@ export const Footer = async () => {
       <Container width="wide">
         <div className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <Logo />
+            <Logo className="text-[1.375rem]" />
             <p className="mt-4 max-w-xs text-sm text-ink-faint">
               {t(
                 "Voice notes for iPhone. Recorded, transcribed and kept on your device.",

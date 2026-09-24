@@ -13,12 +13,12 @@ export const DownloadCta = async () => {
     <Section id="download" space="loose" divider aria-labelledby="download-heading">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[30rem] bg-[radial-gradient(50%_60%_at_50%_100%,rgba(61,155,255,0.14),transparent_72%)]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[30rem] glow-bottom"
       />
 
       <Container className="relative">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <Logo markOnly className="text-[2.5rem]" />
+          <Logo markOnly className="text-[3.25rem]" />
           <h2 id="download-heading" className="text-display mt-8">
             {t("Start with your next thought.")}
           </h2>

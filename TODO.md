@@ -68,9 +68,12 @@ Held in `src/content/en/faq.ts` with `draft: true`, so they do not render:
 
 ## 6. Brand
 
-- [ ] `assets/images/icon.png` in the iOS project is still the **Expo template
-      icon**. The website derives its favicon, Apple touch icon and social card
-      from it (`npm run icons`), so replacing it there updates the site too.
+- [x] The site uses the real Wave logo. The source artwork lives on the
+      `feat/recorder-and-take-sheet` branch of the app (`wave-logo.png`,
+      `wave-splash-dark.png`); `master` still carries the Expo template icon.
+      The website keeps its own copies in `src/assets/brand/`, so it does not
+      depend on that branch being merged. If the logo changes, replace those
+      two files and run `npm run icons`.
 
 ## Claims deliberately left out
 

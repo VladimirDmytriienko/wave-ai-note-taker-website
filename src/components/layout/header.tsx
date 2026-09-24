@@ -25,7 +25,7 @@ export const Header = async () => {
             aria-label={t("Wave home")}
             className="shrink-0 transition-opacity duration-200 hover:opacity-80"
           >
-            <Logo />
+            <Logo className="text-[1.375rem]" />
           </Link>
 
           <nav aria-label={t("Overview")} className="flex items-center gap-1">

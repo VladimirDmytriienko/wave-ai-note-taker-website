@@ -1,8 +1,9 @@
 /**
- * Derives the website's favicon, Apple touch icon and brand image from the iOS
- * app icon, so there is exactly one source of truth for the mark.
+ * Derives the favicon, Apple touch icon and the public brand image from the
+ * Wave app icon, so there is exactly one source for the mark.
  *
- * Source: ../assets/images/icon.png (the app icon used by the Expo project).
+ * Source: src/assets/brand/wave-icon.png — a copy of the iOS app icon
+ * (`assets/images/wave-logo.png` in the app, on the recorder branch).
  * Run with `npm run icons` after the app icon changes.
  */
 import { mkdir } from "node:fs/promises";
@@ -11,14 +12,13 @@ import { fileURLToPath } from "node:url";
 
 import sharp from "sharp";
 
-const here = dirname(fileURLToPath(import.meta.url));
-const root = resolve(here, "..");
-const source = resolve(root, "../assets/images/icon.png");
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const source = resolve(root, "src/assets/brand/wave-icon.png");
 
 const outputs = [
   { path: "src/app/icon.png", size: 64 },
   { path: "src/app/apple-icon.png", size: 180 },
-  { path: "public/brand/app-icon.png", size: 512 },
+  { path: "public/brand/wave-icon.png", size: 512 },
 ];
 
 for (const { path, size } of outputs) {
