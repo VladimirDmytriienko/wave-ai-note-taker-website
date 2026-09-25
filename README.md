@@ -3,8 +3,8 @@
 The public product site for the Wave iOS app: product presentation, App Store
 call to action, FAQ, Privacy Policy and Terms of Use.
 
-Separate npm project from the Expo app in the repository root. It shares the
-repository (and the app icon) but nothing else.
+Standalone npm project, separate from the Expo app. Its brand icon is stored
+locally in `src/assets/brand/`, so the website builds without the app checkout.
 
 ## Running it
 

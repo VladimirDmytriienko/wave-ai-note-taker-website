@@ -3,8 +3,7 @@ import { dirname } from "node:path";
 
 import type { NextConfig } from "next";
 
-// The iOS app and the website are separate npm projects in one repository;
-// pinning the root stops the bundler from walking up to the app's lockfile.
+// Pin the bundler to this standalone project's directory.
 const projectRoot = dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
