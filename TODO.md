@@ -39,7 +39,9 @@ action renders "Coming to the App Store" rather than a dead link.
 
 - [x] `supportEmail` — card-carry@tutamail.com (footer and the privacy policy)
 - [ ] `socialLinks` — empty for now
-- [ ] `NEXT_PUBLIC_SITE_URL` in the deployment environment
+- [x] Site URL — on Vercel the production domain
+      (wave-ai-note-taker-website.vercel.app) is used automatically; set
+      `NEXT_PUBLIC_SITE_URL` only for a custom domain
 
 ## 4. Legal
 

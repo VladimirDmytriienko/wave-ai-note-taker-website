@@ -18,14 +18,19 @@ export interface SocialLink {
 
 /**
  * Public origin of the site, without a trailing slash. Used for canonical
- * URLs, Open Graph images, the sitemap and robots.txt.
+ * URLs, Open Graph images, the sitemap and robots.txt — all server-side.
  *
- * Set `NEXT_PUBLIC_SITE_URL` in the deployment environment (see `.env.example`).
- * The localhost fallback keeps local development working and makes a missing
- * production value obvious rather than silently shipping someone else's domain.
+ * `NEXT_PUBLIC_SITE_URL` wins when set, for a custom domain (see
+ * `.env.example`). Otherwise a Vercel build uses the project's production
+ * domain, which Vercel provides as `VERCEL_PROJECT_PRODUCTION_URL`, so canonical
+ * links never point at localhost in production. Local development falls back
+ * to localhost.
  */
+const vercelProductionHost = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
 export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+  process.env.NEXT_PUBLIC_SITE_URL
+  ?? (vercelProductionHost ? `https://${vercelProductionHost}` : "http://localhost:3000")
 ).replace(/\/$/, "");
 
 export const site = {
