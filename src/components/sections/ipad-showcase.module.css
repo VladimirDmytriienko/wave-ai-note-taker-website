@@ -1,13 +1,16 @@
-/* iPad: the device settles into place as it arrives, then switches from the
-   dark appearance to the light one while it sits centred in the viewport.
+/* iPad: the device pins in the middle of the screen and HOLDS there until it
+   has switched from the dark appearance to the light one and the light one
+   has been on screen for a moment — only then does the page move on.
 
-   `--p` comes from <ScrollScene range="view"> (0.5 = centred). Without it —
-   no script, or reduced motion — the iPad simply shows the dark appearance at
-   full size. */
+   `--p` comes from <ScrollScene range="pin">: 0 when the stage pins, 1 when
+   it releases. Timeline:
+     0.00 – 0.20  settles to full size
+     0.30 – 0.55  dark → light
+     0.55 – 1.00  holds on light
+   Without scripts the iPad is a static, unpinned dark screen. */
 
 .scene {
-  /* 0 → 1 across a short window just after the device is centred. */
-  --swap: clamp(0, calc((var(--p, 0) - 0.5) * 8), 1);
+  --swap: clamp(0, calc((var(--p, 0) - 0.3) * 4), 1);
 }
 
 .device {
@@ -17,9 +20,25 @@
   margin-inline: auto;
 }
 
+.scene[data-scene="on"] {
+  /* One viewport to pin, plus 1.3 viewports of scroll to play the switch
+     and hold on the light appearance. */
+  height: calc(100svh + 130svh);
+}
+
+.scene[data-scene="on"] .stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Clear the sticky header. */
+  padding-block: 4.5rem 1.5rem;
+}
+
 .scene[data-scene="on"] .device {
-  /* Settles from 88% to full size over the first 40% of its pass. */
-  transform: scale(calc(0.88 + 0.12 * min(1, var(--p, 0) * 2.5)));
+  transform: scale(calc(0.92 + 0.08 * min(1, var(--p, 0) * 5)));
   will-change: transform;
 }
 
@@ -41,7 +60,7 @@
   display: flex;
   justify-content: center;
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 1.75rem;
   font-size: 0.8125rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -54,4 +73,12 @@
 
 .readoutLight {
   opacity: calc(0.35 + 0.65 * var(--swap));
+}
+
+/* Reduced motion: still pins and switches (changing content is not motion),
+   but the device never scales. */
+@media (prefers-reduced-motion: reduce) {
+  .scene[data-scene="on"] .device {
+    transform: none;
+  }
 }

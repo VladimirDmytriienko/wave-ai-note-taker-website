@@ -12,10 +12,10 @@ import { cn } from "@/lib/cn";
 import styles from "./ipad-showcase.module.css";
 
 /**
- * Wave on iPad: the library beside a transcript, large. As the device passes
- * the middle of the screen it switches from the dark appearance to the light
- * one — the two captures are the same screen, so it reads as the iPad itself
- * changing appearance.
+ * Wave on iPad: the library beside a transcript, large. The device pins in
+ * the middle of the screen and holds until it has switched from the dark
+ * appearance to the light one — the two captures are the same screen, so it
+ * reads as the iPad itself changing appearance — then the page moves on.
  */
 export const IpadShowcase = async () => {
   const t = await getTranslations();
@@ -37,27 +37,36 @@ export const IpadShowcase = async () => {
         </Reveal>
       </Container>
 
-      <ScrollScene range="view" className={cn(styles.scene, "mt-14 sm:mt-20")}>
-        <Container width="wide">
-          <div className={styles.device}>
-            <DeviceFrame device="ipad" aspect={aspect}>
-              <div className={styles.layer}>
-                <ScreenshotScreen id="ipad-split" sizes="(min-width: 1100px) 64rem, 92vw" />
-              </div>
-              <div className={cn(styles.layer, styles.light)}>
-                <ScreenshotScreen
-                  id="ipad-split-light"
-                  sizes="(min-width: 1100px) 64rem, 92vw"
-                />
-              </div>
-            </DeviceFrame>
-          </div>
+      <ScrollScene
+        range="pin"
+        skipOnReducedMotion={false}
+        className={cn(styles.scene, "mt-10 sm:mt-14")}
+      >
+        <div className={styles.stage}>
+          <Container width="wide">
+            <div className={styles.device}>
+              <DeviceFrame device="ipad" aspect={aspect}>
+                <div className={styles.layer}>
+                  <ScreenshotScreen
+                    id="ipad-split"
+                    sizes="(min-width: 1100px) 64rem, 92vw"
+                  />
+                </div>
+                <div className={cn(styles.layer, styles.light)}>
+                  <ScreenshotScreen
+                    id="ipad-split-light"
+                    sizes="(min-width: 1100px) 64rem, 92vw"
+                  />
+                </div>
+              </DeviceFrame>
+            </div>
 
-          <p aria-hidden="true" className={styles.readout}>
-            <span className={styles.readoutDark}>{t("Dark")}</span>
-            <span className={styles.readoutLight}>{t("Light")}</span>
-          </p>
-        </Container>
+            <p aria-hidden="true" className={styles.readout}>
+              <span className={styles.readoutDark}>{t("Dark")}</span>
+              <span className={styles.readoutLight}>{t("Light")}</span>
+            </p>
+          </Container>
+        </div>
       </ScrollScene>
     </Section>
   );
