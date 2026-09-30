@@ -37,23 +37,23 @@ action renders "Coming to the App Store" rather than a dead link.
 
 `src/config/site.ts`:
 
-- [ ] `supportEmail` — the footer support column and the legal contact sections
-      stay hidden or marked until this exists
+- [x] `supportEmail` — card-carry@tutamail.com (footer and the privacy policy)
 - [ ] `socialLinks` — empty for now
 - [ ] `NEXT_PUBLIC_SITE_URL` in the deployment environment
 
 ## 4. Legal
 
-`/privacy` and `/terms` are drafts that describe the app's real behaviour, with
-a visible "Needs review" banner. They must be completed and reviewed by a
-lawyer. Open items are marked inline and in
-`src/content/en/privacy.ts` / `terms.ts`:
+`/privacy` is final: short, describes the app's real behaviour, names Hugging
+Face as the model host and gives the support address.
 
-- [ ] legal entity, address and contact email
+`/terms` is still a draft with a visible "Needs review" banner. Open items are
+marked inline in `src/content/en/terms.ts`:
+
+- [ ] legal entity and address
 - [ ] governing law and jurisdiction
 - [ ] pricing and refunds clause
-- [ ] the provider that hosts the downloaded speech model
 - [ ] liability cap and consumer-rights carve-outs
+- [x] contact email and the speech-model host (in the privacy policy)
 
 ## 5. FAQ answers not yet published
 

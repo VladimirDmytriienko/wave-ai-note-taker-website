@@ -49,8 +49,8 @@ export const site = {
     appleAppId: null as string | null,
   },
 
-  /** TODO: support address, e.g. `support@yourdomain.com`. */
-  supportEmail: null as string | null,
+  /** Support and privacy contact, shown in the footer and the legal pages. */
+  supportEmail: "card-carry@tutamail.com" as string | null,
 
   /** TODO: add profiles as they exist. Order here is the order rendered. */
   socialLinks: [] as readonly SocialLink[],

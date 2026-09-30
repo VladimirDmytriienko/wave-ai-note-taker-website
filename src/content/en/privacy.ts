@@ -1,22 +1,19 @@
+import { site } from "@/config/site";
+
 import type { LegalDocument } from "../legal-types";
 
 /**
- * Privacy Policy (English) — DRAFT.
- *
- * Every statement here describes how the app actually behaves today. The gaps
- * are the ones no engineer can fill in: the legal entity, the jurisdiction and
- * the contact address. They are marked as `todo` blocks and must be completed,
- * and the whole document reviewed by a lawyer, before launch.
+ * Privacy Policy (English). Short on purpose: the app keeps everything on the
+ * device, so there is little to say. Every statement describes how the app
+ * actually behaves — update it whenever that changes.
  */
 export const privacy: LegalDocument = {
   title: "Privacy Policy",
   description:
-    "How Wave handles your recordings, transcripts and device data — in short: it keeps them on your iPhone.",
-  updated: "2026-09-24",
-  reviewRequired: true,
+    "How AI Wave handles your recordings and transcripts — in short: they stay on your iPhone.",
+  updated: "2026-09-30",
   intro: [
-    "Wave is a voice notes app for iPhone. It is built so that your recordings stay on your device: there is no account, no sync and no server that receives what you record.",
-    "This policy explains what the app stores, what leaves your device and what it never does.",
+    "AI Wave is a voice notes app. It has no account and no server of its own: your recordings and transcripts stay on your device.",
   ],
   sections: [
     {
@@ -25,21 +22,21 @@ export const privacy: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          text: "Nothing. Wave has no account system, collects no personal information and sends no usage or analytics data.",
+          text: "Nothing. The app sends no personal information, usage data or analytics. It contains no ads and no tracking.",
         },
         {
           type: "paragraph",
-          text: "Your recordings, transcripts, notes, folder names and app settings are stored locally on your iPhone and are covered by the device's own protections, including your passcode and, if you use it, device encryption and iCloud device backups.",
+          text: "Recordings, transcripts, folders and settings are stored only on your device. If you use iCloud Backup, they are included in your own device backup, which Apple protects.",
         },
       ],
     },
     {
       id: "microphone",
-      heading: "Microphone access",
+      heading: "Microphone",
       blocks: [
         {
           type: "paragraph",
-          text: "Wave asks for microphone access so it can record. Audio is written to storage on your device and is used only for playback and transcription inside the app. You can withdraw the permission at any time in iOS Settings.",
+          text: "The app uses the microphone only while you record. You can turn access off at any time in iOS Settings.",
         },
       ],
     },
@@ -49,51 +46,17 @@ export const privacy: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          text: "Speech is turned into text on your device. Audio is not uploaded for processing, and transcription continues to work with no network connection.",
-        },
-        {
-          type: "paragraph",
-          text: "The first time you transcribe something, the app downloads the speech model it needs and keeps it on your device for later use. That download is an ordinary file request: it carries no recording, no transcript and no information about you beyond what any download requires, such as your IP address, which is handled by the hosting provider.",
-        },
-        {
-          type: "todo",
-          text: "Name the hosting provider that serves the speech model and link its privacy policy.",
-        },
-      ],
-    },
-    {
-      id: "no-third-parties",
-      heading: "Third parties",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Wave contains no advertising, no tracking software and no third-party analytics.",
-        },
-        {
-          type: "paragraph",
-          text: "If you download Wave from the App Store, Apple handles the purchase, the download and any aggregate statistics it reports to us under its own privacy policy. We never receive your recordings through it.",
+          text: "Speech is transcribed on your device; audio is never uploaded. The first time a speech model is needed, the app downloads it from Hugging Face (huggingface.co). That request carries no recording or transcript — only what any download does, such as your IP address, handled under Hugging Face's privacy policy: https://huggingface.co/privacy",
         },
       ],
     },
     {
       id: "your-control",
-      heading: "Your data, your device",
+      heading: "Your control",
       blocks: [
         {
           type: "paragraph",
-          text: "Because your content never leaves your iPhone, you control it directly:",
-        },
-        {
-          type: "list",
-          items: [
-            "Delete a recording in the app to remove it, along with its transcript and notes.",
-            "Delete the app to remove everything it stored.",
-            "Revoke microphone access in iOS Settings at any time.",
-          ],
-        },
-        {
-          type: "paragraph",
-          text: "We hold no copy of your content, so there is nothing for us to export, correct or delete on your behalf.",
+          text: "Delete a recording in the app to remove it with its transcript, or delete the app to remove everything. We keep no copy, so there is nothing for us to export or erase.",
         },
       ],
     },
@@ -103,17 +66,17 @@ export const privacy: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          text: "Wave is not directed at children and does not knowingly collect information from anyone, including children.",
+          text: "The app is not directed at children and collects no information from anyone.",
         },
       ],
     },
     {
       id: "changes",
-      heading: "Changes to this policy",
+      heading: "Changes",
       blocks: [
         {
           type: "paragraph",
-          text: "If the app changes in a way that affects this policy, the updated version will be published on this page with a new date at the top.",
+          text: "If this policy changes, the new version is published on this page with a new date.",
         },
       ],
     },
@@ -122,8 +85,8 @@ export const privacy: LegalDocument = {
       heading: "Contact",
       blocks: [
         {
-          type: "todo",
-          text: "Add the legal entity responsible for the app, its address, and a support email address for privacy enquiries.",
+          type: "paragraph",
+          text: `Questions about privacy: ${site.supportEmail}`,
         },
       ],
     },
