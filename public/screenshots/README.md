@@ -1,9 +1,10 @@
 # Screenshots
 
-Application captures used on the site, by device:
+Full-resolution captures from the simulator, used as-is — `next/image` turns
+them into AVIF/WebP at whatever size each slot needs.
 
-- `iphone/` — portrait, 19.5:9 (currently 921 × 2000 WebP)
-- `ipad/` — landscape, 4:3 (currently 2000 × 1500 WebP)
+- `iphone-*.png` — portrait, 1320 × 2868
+- `ipad-*.png` — landscape, 2752 × 2064
 
 To add or replace one: put the file here and point `src` at it in
 `src/config/screenshots.ts`, with its pixel `width` and `height`. A registered

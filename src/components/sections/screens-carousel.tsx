@@ -12,6 +12,7 @@ const order: readonly ScreenshotId[] = [
   "library",
   "playback",
   "transcript",
+  "library-light",
   "playback-light",
   "settings",
 ];

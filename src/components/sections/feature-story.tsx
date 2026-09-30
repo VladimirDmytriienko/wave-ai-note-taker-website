@@ -19,7 +19,8 @@ interface Step {
 
 const steps: readonly Step[] = [
   {
-    // The library, with the floating record button the copy talks about.
+    // The library (dark, to sit on the dark page), with the floating record
+    // button the copy talks about.
     screenshot: "library",
     eyebrow: "Record",
     title: "One tap, from anywhere.",

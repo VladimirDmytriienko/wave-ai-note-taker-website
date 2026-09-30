@@ -5,9 +5,10 @@
  * here with its real pixel size; a screen whose `src` is `null` renders a
  * clearly marked placeholder of the right shape instead.
  *
- * To add or replace a screenshot: drop the file in `public/screenshots/<device>/`
- * and point `src` at it. Captures are WebP; iPhone portrait at 19.5:9, iPad
- * landscape at 4:3.
+ * To add or replace a screenshot: drop the file in `public/screenshots/` and
+ * point `src` at it. Captures are full-resolution PNGs straight from the
+ * simulator — `next/image` serves them as AVIF/WebP at the size each slot
+ * needs, so there is no reason to pre-compress them.
  */
 import type { MessageKey } from "@/i18n";
 
@@ -26,38 +27,44 @@ export interface ScreenshotAsset {
   readonly capture: string;
 }
 
-const iphone = { device: "iphone", width: 921, height: 2000 } as const;
-const ipad = { device: "ipad", width: 2000, height: 1500 } as const;
+const iphone = { device: "iphone", width: 1320, height: 2868 } as const;
+const ipad = { device: "ipad", width: 2752, height: 2064 } as const;
 
 export const screenshots = {
   // ── iPhone ──────────────────────────────────────────────────────────────
   library: {
     ...iphone,
-    src: "/screenshots/iphone/library-light.webp",
+    src: "/screenshots/iphone-library-dark.png",
     alt: "Recordings library",
     capture: "Recordings list with search, folder tabs and the record button",
   },
+  "library-light": {
+    ...iphone,
+    src: "/screenshots/iphone-library-light.png",
+    alt: "Recordings library in the light appearance",
+    capture: "Recordings list in light mode",
+  },
   playback: {
     ...iphone,
-    src: "/screenshots/iphone/playback-dark.webp",
+    src: "/screenshots/iphone-playback-dark.png",
     alt: "Playback controls",
     capture: "Recording sheet: waveform, playhead, skip and play controls",
   },
   "playback-light": {
     ...iphone,
-    src: "/screenshots/iphone/playback-light.webp",
+    src: "/screenshots/iphone-playback-light.png",
     alt: "Playback controls in the light appearance",
     capture: "Recording sheet in light mode",
   },
   transcript: {
     ...iphone,
-    src: "/screenshots/iphone/transcript-dark.webp",
+    src: "/screenshots/iphone-transcript-dark.png",
     alt: "Recording transcript",
     capture: "Transcript of a recording, paragraphs with timestamps",
   },
   settings: {
     ...iphone,
-    src: "/screenshots/iphone/settings-light.webp",
+    src: "/screenshots/iphone-settings-light.png",
     alt: "Settings",
     capture: "Settings with language and theme",
   },
@@ -78,31 +85,31 @@ export const screenshots = {
   // ── iPad ────────────────────────────────────────────────────────────────
   "ipad-split": {
     ...ipad,
-    src: "/screenshots/ipad/split-dark.webp",
+    src: "/screenshots/ipad-transcript-split-dark.png",
     alt: "Recordings beside a transcript on iPad",
     capture: "Split view: library list and transcript, dark",
   },
   "ipad-split-light": {
     ...ipad,
-    src: "/screenshots/ipad/split-light.webp",
+    src: "/screenshots/ipad-transcript-split-light.png",
     alt: "Recordings beside a transcript on iPad, in the light appearance",
     capture: "Split view: library list and transcript, light",
   },
   "ipad-player": {
     ...ipad,
-    src: "/screenshots/ipad/player-dark.webp",
+    src: "/screenshots/ipad-library-dark.png",
     alt: "Playback on iPad",
     capture: "Split view: library list and the playback waveform, dark",
   },
   "ipad-player-light": {
     ...ipad,
-    src: "/screenshots/ipad/player-light.webp",
+    src: "/screenshots/ipad-library-light.png",
     alt: "Playback on iPad, in the light appearance",
     capture: "Split view: library list and the playback waveform, light",
   },
   "ipad-transcript": {
     ...ipad,
-    src: "/screenshots/ipad/transcript-dark.webp",
+    src: "/screenshots/ipad-transcript-dark.png",
     alt: "Full-screen transcript on iPad",
     capture: "Transcript full screen with the speakers sidebar",
   },

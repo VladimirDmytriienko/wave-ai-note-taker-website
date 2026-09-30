@@ -5,10 +5,11 @@ marked in the source, so nothing invented ships by accident.
 
 ## 1. Screenshots
 
-- [x] iPhone: library (light), playback (dark + light), transcript (dark),
-      settings (light) — in `public/screenshots/iphone/`.
-- [x] iPad: split view (dark + light), player (dark + light), full-screen
-      transcript (dark) — in `public/screenshots/ipad/`.
+- [x] iPhone: library (dark + light), playback (dark + light), transcript
+      (dark), settings (light) — `public/screenshots/iphone-*.png`, 1320×2868.
+- [x] iPad: split view with transcript (dark + light), split view with the
+      player (dark + light), full-screen transcript (dark) —
+      `public/screenshots/ipad-*.png`, 2752×2064.
 
 Still wanted — registered in `src/config/screenshots.ts` with `src: null`,
 not used on the page until supplied:
@@ -17,10 +18,6 @@ not used on the page until supplied:
 |---|---|
 | `recording` | Capture sheet **mid-recording**: live waveform, timer, pause/stop. Would replace the library shot in the story's "Record" step. |
 | `folders` | Folders screen with All Recordings, Favourites and custom folders. |
-
-The supplied files are 921×2000 (iPhone) and 2000×1500 (iPad) WebP — enough
-for retina at the sizes used. Original full-resolution PNGs would be a small
-further gain.
 
 ## 2. App Store
 
