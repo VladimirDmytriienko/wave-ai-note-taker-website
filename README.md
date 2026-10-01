@@ -1,6 +1,6 @@
-# Wave — marketing website
+# Allsaid — marketing website
 
-The public product site for the Wave iOS app: product presentation, App Store
+The public product site for the Allsaid iOS app: product presentation, App Store
 call to action, FAQ, Privacy Policy and Terms of Use.
 
 Standalone npm project, separate from the Expo app. Its brand icon is stored

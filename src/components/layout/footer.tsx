@@ -84,7 +84,7 @@ export const Footer = async () => {
         </div>
 
         <div className="flex flex-col gap-2 border-t border-hairline py-8 text-sm text-ink-faint sm:flex-row sm:items-center sm:justify-between">
-          <p>{t("© {year} Wave", { year })}</p>
+          <p>{t("© {year} Allsaid", { year })}</p>
           <p>{t("iPhone and iPad · iOS {version} or later", { version: site.platform.minimumOsVersion })}</p>
         </div>
       </Container>

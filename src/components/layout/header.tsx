@@ -22,7 +22,7 @@ export const Header = async () => {
         <div className="flex h-16 items-center justify-between gap-6">
           <Link
             href="/"
-            aria-label={t("Wave home")}
+            aria-label={t("Allsaid home")}
             className="shrink-0 transition-opacity duration-200 hover:opacity-80"
           >
             <Logo className="text-[1.375rem]" />

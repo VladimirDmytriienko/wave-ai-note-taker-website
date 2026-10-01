@@ -19,6 +19,7 @@ const HomePage = () => {
     "@context": "https://schema.org",
     "@type": "MobileApplication",
     name: site.appName,
+    alternateName: site.storeName,
     applicationCategory: "ProductivityApplication",
     operatingSystem: `iOS ${site.platform.minimumOsVersion}+`,
     url: absoluteUrl("/"),

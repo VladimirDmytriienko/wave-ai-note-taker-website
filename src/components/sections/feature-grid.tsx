@@ -30,13 +30,13 @@ export const FeatureGrid = async () => {
     <Section id="features" divider aria-labelledby="features-heading">
       <Container>
         <Reveal>
-          <Eyebrow>{t("What Wave does")}</Eyebrow>
+          <Eyebrow>{t("What Allsaid does")}</Eyebrow>
         </Reveal>
 
         {/* The grid itself is the heading's content; a visible title here would
             repeat the eyebrow, so the accessible name carries it instead. */}
         <h2 id="features-heading" className="sr-only">
-          {t("What Wave does")}
+          {t("What Allsaid does")}
         </h2>
 
         <ul className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-2">

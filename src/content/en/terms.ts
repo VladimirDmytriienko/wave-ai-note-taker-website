@@ -10,11 +10,11 @@ import type { LegalDocument } from "../legal-types";
 export const terms: LegalDocument = {
   title: "Terms of Use",
   description:
-    "The terms that apply when you use Wave, the voice notes app for iPhone.",
+    "The terms that apply when you use Allsaid, the voice notes app for iPhone.",
   updated: "2026-09-24",
   reviewRequired: true,
   intro: [
-    "These terms apply when you install or use Wave. By using the app, you agree to them.",
+    "These terms apply when you install or use Allsaid. By using the app, you agree to them.",
   ],
   sections: [
     {
@@ -23,7 +23,7 @@ export const terms: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          text: "You get a personal, non-exclusive, non-transferable licence to use Wave on devices you own or control, in line with the App Store Terms of Service.",
+          text: "You get a personal, non-exclusive, non-transferable licence to use Allsaid on devices you own or control, in line with the App Store Terms of Service.",
         },
         {
           type: "paragraph",
@@ -37,7 +37,7 @@ export const terms: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          text: "Everything you record, transcribe or write in Wave is yours. It stays on your device, and we claim no rights over it.",
+          text: "Everything you record, transcribe or write in Allsaid is yours. It stays on your device, and we claim no rights over it.",
         },
         {
           type: "paragraph",
@@ -51,7 +51,7 @@ export const terms: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          text: "Laws about recording people differ from place to place, and some require the consent of everyone being recorded. Using Wave lawfully — including obtaining any consent you need — is your responsibility.",
+          text: "Laws about recording people differ from place to place, and some require the consent of everyone being recorded. Using Allsaid lawfully — including obtaining any consent you need — is your responsibility.",
         },
       ],
     },
@@ -81,7 +81,7 @@ export const terms: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          text: "Wave is provided as it is. Transcription is produced by a speech model and will sometimes be wrong or incomplete, so do not rely on it as a verbatim record without checking it against the audio.",
+          text: "Allsaid is provided as it is. Transcription is produced by a speech model and will sometimes be wrong or incomplete, so do not rely on it as a verbatim record without checking it against the audio.",
         },
         {
           type: "paragraph",

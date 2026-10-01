@@ -23,7 +23,7 @@ export const DownloadCta = async () => {
             {t("Start with your next thought.")}
           </h2>
           <p className="text-lead mx-auto mt-6 max-w-md text-ink-muted">
-            {t("Wave is built for iPhone and iPad and runs entirely on your device.")}
+            {t("Allsaid is built for iPhone and iPad and runs entirely on your device.")}
           </p>
 
           <div className="mt-10 flex flex-col items-center gap-4">

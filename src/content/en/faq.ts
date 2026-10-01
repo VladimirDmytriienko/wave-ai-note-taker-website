@@ -27,7 +27,7 @@ export const faq: readonly FaqEntry[] = [
     id: "audio-leaves-device",
     question: "Does my audio ever leave my device?",
     answer: [
-      "No. Recording and transcription both run on your device, and Wave has no server to send anything to.",
+      "No. Recording and transcription both run on your device, and Allsaid has no server to send anything to.",
     ],
   },
   {
@@ -47,7 +47,7 @@ export const faq: readonly FaqEntry[] = [
   },
   {
     id: "offline",
-    question: "Does Wave work offline?",
+    question: "Does Allsaid work offline?",
     answer: [
       "Recording, playback and search work offline. Transcription works offline too, once the speech model has finished downloading.",
     ],
@@ -56,26 +56,26 @@ export const faq: readonly FaqEntry[] = [
     id: "languages",
     question: "What languages does the app support?",
     answer: [
-      "Wave's interface is available in English and Ukrainian, and follows your device's light or dark appearance.",
+      "Allsaid's interface is available in English and Ukrainian, and follows your device's light or dark appearance.",
     ],
   },
   {
     id: "requirements",
-    question: "Which devices does Wave run on?",
-    answer: ["Wave runs on iPhone with iOS 17 or later, and on iPad with iPadOS 17 or later."],
+    question: "Which devices does Allsaid run on?",
+    answer: ["Allsaid runs on iPhone with iOS 17 or later, and on iPad with iPadOS 17 or later."],
   },
 
   // ── Not published yet ─────────────────────────────────────────────────────
   {
     id: "price",
-    question: "How much does Wave cost?",
+    question: "How much does Allsaid cost?",
     answer: [],
     draft: true,
     todo: "Pricing model is undecided — free, paid up front, or in-app purchase.",
   },
   {
     id: "transcription-languages",
-    question: "Which languages can Wave transcribe?",
+    question: "Which languages can Allsaid transcribe?",
     answer: [],
     draft: true,
     todo:

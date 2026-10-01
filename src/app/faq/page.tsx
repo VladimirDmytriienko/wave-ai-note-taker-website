@@ -10,7 +10,7 @@ import { getTranslations } from "@/i18n";
 import { createMetadata } from "@/lib/metadata";
 
 const description =
-  "Short answers about how Wave handles your recordings, your data and your device.";
+  "Short answers about how Allsaid handles your recordings, your data and your device.";
 
 export const metadata: Metadata = createMetadata({
   title: "Frequently asked questions",
@@ -44,7 +44,7 @@ const FaqPage = async () => {
             <h1 className="text-display">{t("Frequently asked questions")}</h1>
             <p className="text-lead mt-6 text-ink-muted">
               {t(
-                "Short answers about how Wave handles your recordings, your data and your device.",
+                "Short answers about how Allsaid handles your recordings, your data and your device.",
               )}
             </p>
           </Reveal>

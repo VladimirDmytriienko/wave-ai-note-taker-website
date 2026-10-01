@@ -61,7 +61,7 @@ export const FeatureStory = async () => {
     >
       <section className={styles.stage} aria-labelledby="story-heading">
         <h2 id="story-heading" className="sr-only">
-          {t("How Wave works")}
+          {t("How Allsaid works")}
         </h2>
 
         <Container className={styles.grid}>

@@ -35,7 +35,7 @@ export const Hero = async () => {
           <Reveal on="load" delay={560}>
             <p className="text-lead mx-auto mt-4 max-w-xl text-ink-muted sm:mt-5">
               {t(
-                "Wave records, transcribes and searches your notes on your device. No account, nothing uploaded.",
+                "Allsaid records, transcribes and searches your notes on your device. No account, nothing uploaded.",
               )}
             </p>
           </Reveal>

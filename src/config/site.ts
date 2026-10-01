@@ -35,7 +35,14 @@ export const siteUrl = (
 
 export const site = {
   /** Product name. Brand name — never translated, never passed through `t()`. */
-  appName: "Wave",
+  appName: "Allsaid",
+
+  /**
+   * The App Store name (30 characters at most) and subtitle (30 at most).
+   * Keep both identical to the listing in App Store Connect.
+   */
+  storeName: "Allsaid: Voice to Text Notes",
+  storeSubtitle: "Local AI Offline Transcription",
 
   websiteUrl: siteUrl,
 

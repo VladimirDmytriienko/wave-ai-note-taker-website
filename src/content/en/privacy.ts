@@ -10,10 +10,10 @@ import type { LegalDocument } from "../legal-types";
 export const privacy: LegalDocument = {
   title: "Privacy Policy",
   description:
-    "How AI Wave handles your recordings and transcripts — in short: they stay on your iPhone.",
+    "How Allsaid handles your recordings and transcripts — in short: they stay on your iPhone.",
   updated: "2026-09-30",
   intro: [
-    "AI Wave is a voice notes app. It has no account and no server of its own: your recordings and transcripts stay on your device.",
+    "Allsaid is a voice notes app. It has no account and no server of its own: your recordings and transcripts stay on your device.",
   ],
   sections: [
     {
