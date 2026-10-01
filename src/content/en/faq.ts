@@ -56,7 +56,7 @@ export const faq: readonly FaqEntry[] = [
     id: "languages",
     question: "What languages does the app support?",
     answer: [
-      "Allsaid's interface is available in English and Ukrainian, and follows your device's light or dark appearance.",
+      "Allsaid's interface is available in English, Ukrainian, German, Spanish, French, Brazilian Portuguese, Japanese, Korean, and Simplified and Traditional Chinese. It follows your device's language and its light or dark appearance.",
     ],
   },
   {
